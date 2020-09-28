@@ -1,0 +1,13 @@
+@PACKAGE_INIT@
+
+
+#Mettre les dependances ici
+
+#include(CMakeFindDependencyMacro)
+#find_dependency(deps)
+
+#Les dependances sont externes au code source
+
+
+#Load information for each target #Target : vient du projet
+include(${CMAKE_CURRENT_LIST_DIR}/loglib_target.cmake)

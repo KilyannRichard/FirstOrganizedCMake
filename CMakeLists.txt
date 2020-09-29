@@ -41,7 +41,7 @@ else()
 	set(CPACK_GENERATOR "TGZ")
 endif()
 
-#This must always be last !
+#This must always be last !!
 include(CPack)
 
 

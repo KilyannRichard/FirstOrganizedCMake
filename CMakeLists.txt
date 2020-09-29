@@ -33,4 +33,15 @@ if (FIRSTORGANIZEDCMAKE_WITH_TESTS)
 	add_subdirectory(tests)
 endif()
 
+#Configure CPack
+
+if(WIN32)
+	set(CPACK_GENERATOR "ZIP")
+else()
+	set(CPACK_GENERATOR "TGZ")
+endif()
+
+#This must always be last !
+include(CPack)
+
 

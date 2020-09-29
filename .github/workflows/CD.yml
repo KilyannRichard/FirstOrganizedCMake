@@ -44,7 +44,7 @@ jobs:
     - name: Upload
       uses: softprops/action-gh-release@v1
       with:
-        files: "FirstOrganizedCMake-1.0.0.win64.zip"
+        files: "FirstOrganizedCMake-1.0.win64.zip"
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
 

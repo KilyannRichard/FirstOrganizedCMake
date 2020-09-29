@@ -1,6 +1,8 @@
 name: CD
 
-on: [push]
+on: 
+  push:
+    tags: 'v*'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -12,7 +14,7 @@ jobs:
     # well on Windows or Mac.  You can convert this to a matrix build if you need
     # cross-platform coverage.
     # See: https://docs.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow#configuring-a-build-matrix
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -36,7 +38,15 @@ jobs:
       working-directory: ${{runner.workspace}}/build
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
-      run: cmake --build . --config $BUILD_TYPE
+      run: |
+        cmake --build . --config $BUILD_TYPE
+        cmake --build . --target package --config $BUILD_TYPE
+    - name: Upload
+      uses: softprops/action-gh-release@v1
+      with:
+        files: "FirstOrganizedCMake-1.0.0.win64.zip"
+      env:
+        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
 
     - name: Test
       working-directory: ${{runner.workspace}}/build
